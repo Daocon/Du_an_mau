@@ -7,16 +7,16 @@ public class LoaiSachDTO {
     public LoaiSachDTO() {
     }
 
-    public LoaiSachDTO(Integer maLoai, String hoTen) {
+    public LoaiSachDTO(int maLoai, String hoTen) {
         this.maLoai = maLoai;
         this.hoTen = hoTen;
     }
 
-    public Integer getMaLoai() {
+    public int getMaLoai() {
         return maLoai;
     }
 
-    public void setMaLoai(Integer maLoai) {
+    public void setMaLoai(int maLoai) {
         this.maLoai = maLoai;
     }
 
