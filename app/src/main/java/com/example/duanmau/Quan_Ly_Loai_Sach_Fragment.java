@@ -86,10 +86,10 @@ public class Quan_Ly_Loai_Sach_Fragment extends Fragment {
                 int maLS = Integer.parseInt(edt_maloaisach.getText().toString().trim());
                 String tenLS = edt_tenloaisach.getText().toString();
 
-                sachDAO = new LoaiSachDAO(getActivity());
+                loaiSachDAO = new LoaiSachDAO(getActivity());
                 LoaiSachDTO loaiSachDTO = new LoaiSachDTO(maLS, tenLS);
 
-                int id = sachDAO.InsertLoaiSach(loaiSachDTO);
+                int id = loaiSachDAO.InsertLoaiSach(loaiSachDTO);
                 if (id > 0) {
                     //load lại rc
                     refereshList();
@@ -109,12 +109,10 @@ public class Quan_Ly_Loai_Sach_Fragment extends Fragment {
         });
         dialog.show();
     }
-
     private void refereshList() {
         listloaisach.clear();
-        sachDAO = new LoaiSachDAO(requireContext());
-        listloaisach.addAll(sachDAO.getAllLoaiSachToString());
-        loaiSachAdapter = new LoaiSachAdapter(requireContext(), listloaisach);
+        loaiSachDAO = new LoaiSachDAO(requireContext());
+        listloaisach.addAll(loaiSachDAO.getAllLoaiSachToString());
         loaiSachAdapter.notifyDataSetChanged();
     }
 

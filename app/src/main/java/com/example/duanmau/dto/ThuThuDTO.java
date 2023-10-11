@@ -4,16 +4,14 @@ public class ThuThuDTO {
     private String maTT;
     private String hoTen;
     private String matKhau;
-    private String role;
 
     public ThuThuDTO() {
     }
 
-    public ThuThuDTO(String maTT, String hoTen, String matKhau, String role) {
+    public ThuThuDTO(String maTT, String hoTen, String matKhau) {
         this.maTT = maTT;
         this.hoTen = hoTen;
         this.matKhau = matKhau;
-        this.role = role;
     }
 
     public String getMaTT() {
@@ -38,13 +36,5 @@ public class ThuThuDTO {
 
     public void setMatKhau(String matKhau) {
         this.matKhau = matKhau;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }

@@ -3,6 +3,7 @@ package com.example.duanmau;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -24,14 +25,6 @@ public class Man_Hinh_Login extends AppCompatActivity {
         binding = ActivityManHinhLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
-        //check if user is logged in
-        userPreferences = new UserPreferences(this);
-        if (userPreferences.isLogin()){
-            startActivity(new Intent(Man_Hinh_Login.this,MainActivity.class));
-            finish();
-            return;
-        }
-
         setContentView(view);
 
 
@@ -41,35 +34,21 @@ public class Man_Hinh_Login extends AppCompatActivity {
                 String username = binding.edtUsername.getText().toString().trim();
                 String password = binding.edtPassword.getText().toString().trim();
 
-                if (username.isEmpty()){
-                    binding.edtUsername.setError("Nhập username!");
-                    return;
-                }
                 thuThuDAO = new ThuThuDAO(Man_Hinh_Login.this);
-                thuThuDTO = thuThuDAO.getThuThuByID(username);
-                if (!username.equals(thuThuDTO.getMaTT())){
-                    binding.edtUsername.setError("Nhập sai username!");
-                    return;
-                }
-                if (password.isEmpty()){
-                    binding.edtPassword.setError("Nhập password");
-                    return;
-                }
-                Toast.makeText(Man_Hinh_Login.this, thuThuDTO.getMatKhau(), Toast.LENGTH_SHORT).show();
-                if (!password.equals(thuThuDTO.getMatKhau())){
-                    binding.edtPassword.setError("Nhập sai password!");
-                    return;
+
+                if (thuThuDAO.checklogin(username,password)){
+                    SharedPreferences sharedPreferences = getSharedPreferences("THONGTIN",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("MaTT", username);
+                    editor.commit();
+
+                    startActivity(new Intent(Man_Hinh_Login.this,MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(Man_Hinh_Login.this, "Username và password ko đúng!", Toast.LENGTH_SHORT).show();
                 }
 
-                //set login status
-                if (binding.chkSavePassword.isChecked()){
-                    userPreferences.setLogin(true);
-                    userPreferences.setIdUser(username);
 
-                }
-
-                startActivity(new Intent(Man_Hinh_Login.this,MainActivity.class));
-                finish();
             }
         });
     }

@@ -5,6 +5,21 @@ public class SachDTO {
     private String tenSach;
     private int giaThue;
     private int maLoai;
+    private int soLuongDaMuon;
+
+    public int getSoLuongDaMuon() {
+        return soLuongDaMuon;
+    }
+
+    public void setSoLuongDaMuon(int soLuongDaMuon) {
+        this.soLuongDaMuon = soLuongDaMuon;
+    }
+
+    public SachDTO(int maSach, String tenSach, int soLuongDaMuon) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.soLuongDaMuon = soLuongDaMuon;
+    }
 
     public SachDTO() {
     }

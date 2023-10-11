@@ -51,7 +51,7 @@
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Username"
+            android:hint="Password"
             android:inputType="textPassword">
 
         </com.google.android.material.textfield.TextInputEditText>

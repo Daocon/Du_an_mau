@@ -7,16 +7,55 @@ public class PhieuMuonDTO {
     private String maTT;
     private int maTV;
     private int maSach;
-    private Date ngay;
+    private String ngay;
     private int traSach;
     private int tienThue;
+
+    private String tenTV;
+    private String TenTT;
+    private String TenS;
 
     public PhieuMuonDTO() {
     }
 
+    public String getTenTV() {
+        return tenTV;
+    }
 
-    public PhieuMuonDTO(int maPM, String maTT, int maTV, int maSach, Date ngay, int traSach, int tienThue) {
+    public void setTenTV(String tenTV) {
+        this.tenTV = tenTV;
+    }
+
+    public String getTenTT() {
+        return TenTT;
+    }
+
+    public void setTenTT(String tenTT) {
+        TenTT = tenTT;
+    }
+
+    public String getTenS() {
+        return TenS;
+    }
+
+    public void setTenS(String tenS) {
+        TenS = tenS;
+    }
+    //pm.MaPM, pm.MaTV, tv.tenTV, pm.MaTT, tt.TenTT, pm.MaS, sc.TenS , pm.ngay, pm.traSach, pm.GiaThueS
+    public PhieuMuonDTO(int maPM, int maTV, String tenTV, String maTT, String tenTT, int maSach, String tenS, String ngay, int traSach, int tienThue) {
         this.maPM = maPM;
+        this.maTT = maTT;
+        this.maTV = maTV;
+        this.maSach = maSach;
+        this.ngay = ngay;
+        this.traSach = traSach;
+        this.tienThue = tienThue;
+        this.tenTV = tenTV;
+        this.TenTT = tenTT;
+        this.TenS = tenS;
+    }
+
+    public PhieuMuonDTO(String maTT, int maTV, int maSach, String ngay, int traSach, int tienThue) {
         this.maTT = maTT;
         this.maTV = maTV;
         this.maSach = maSach;
@@ -57,11 +96,11 @@ public class PhieuMuonDTO {
         this.maSach = maSach;
     }
 
-    public Date getNgay() {
+    public String getNgay() {
         return ngay;
     }
 
-    public void setNgay(Date ngay) {
+    public void setNgay(String ngay) {
         this.ngay = ngay;
     }
 

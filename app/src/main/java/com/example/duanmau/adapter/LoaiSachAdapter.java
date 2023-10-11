@@ -142,16 +142,24 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
             public void onClick(DialogInterface dialog, int which) {
                 //thực hiện xóa
                 LoaiSachDAO dao = new LoaiSachDAO(context);
-                int kq = dao.deleteLoaiSach(obj);
-                if (kq > 0) {
-                    //load lại rc
-                    list.clear();
-                    list.addAll(dao.getAllLoaiSachToString());
-                    notifyDataSetChanged();
-                    Toast.makeText(context, "xóa thàn công", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                } else {
-                    Toast.makeText(context, "XÓa ko thàn công", Toast.LENGTH_SHORT).show();
+                int kq = dao.deleteLoaiSach(obj.getMaLoai());
+
+                switch (kq) {
+                    case 1:
+                        list.clear();
+                        list.addAll(dao.getAllLoaiSachToString());
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Xoa thanh cong", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        break;
+                    case -1:
+                        Toast.makeText(context, "Ko the xoa vi loai sach da co sach thuoc the loai nay", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 0:
+                        Toast.makeText(context, "Xoa ko thanh cong", Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        break;
                 }
             }
         });
