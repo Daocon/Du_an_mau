@@ -1,61 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/edt_addThanhVien"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Sửa thành viên"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/txtMaTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:textSize="30sp"/>
+        android:text="Thêm thành viên"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_ten"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        app:hintEnabled="true">
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_addThanhVien">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtTenTV_itemUpThanhVien"
+            android:id="@+id/edt_TenThanhVien"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:hint="Tên thành viên"
-            android:inputType="textEmailAddress"
+            android:inputType="none"
             android:paddingLeft="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_namsinh"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        app:hintEnabled="true">
+        app:hintEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_ten">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edtNamSinh_itemUpThanhVien"
+            android:id="@+id/edt_namsinh"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
-            android:hint="Năm Sinh"
-            android:inputType="textEmailAddress"
+            android:hint="Năm sinh"
+            android:inputType="none"
             android:paddingLeft="20dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,19 +63,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_namsinh">
 
         <Button
-            android:id="@+id/btnSave_itemUpThanhVien"
+            android:id="@+id/btn_save_addTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="100dp"
             android:text="Lưu" />
 
         <Button
-            android:id="@+id/btnHuy_itemUpThanhVien"
+            android:id="@+id/btn_cancel_addTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Huỷ" />
     </LinearLayout>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

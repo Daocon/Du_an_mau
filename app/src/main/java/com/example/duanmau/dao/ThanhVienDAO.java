@@ -30,5 +30,39 @@ public class ThanhVienDAO {
         }
         return list;
     }
-
+    public boolean themThanhVien(String tenTV, String namsinh){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tenTV", tenTV);
+        contentValues.put("namsinh", namsinh);
+        long check = sqLiteDatabase.insert("thanhvien", null,contentValues);
+        if (check == -1){
+            return false;
+        }
+        return true;
+    }
+    public boolean capNhatThongTinTV(int MaTV, String tenTV, String namSinh){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("tenTV",tenTV);
+        contentValues.put("namSinh",namSinh);
+        long check = sqLiteDatabase.update("thanhvien", contentValues, "MaTV = ?", new String[]{String.valueOf(MaTV)});
+        if (check == -1){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public int xoaThanhVien(int MaTV){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM phieumuon WHERE MaTV = ?", new String[]{String.valueOf(MaTV)});
+        if (cursor.getCount() != 0){
+            return -1;
+        }
+        long check = sqLiteDatabase.delete("thanhvien", "MaTV=?", new String[]{String.valueOf(MaTV)});
+        if (check == -1){
+            return 0;
+        }
+        return 1;
+    }
 }
