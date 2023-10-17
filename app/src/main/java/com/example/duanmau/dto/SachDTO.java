@@ -6,6 +6,23 @@ public class SachDTO {
     private int giaThue;
     private int maLoai;
     private int soLuongDaMuon;
+    private String tenLoai;
+
+    public SachDTO(int maSach, String tenSach, int giaThue, int maLoai, String tenLoai) {
+        this.maSach = maSach;
+        this.tenSach = tenSach;
+        this.giaThue = giaThue;
+        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
+    }
+
+    public String getTenLoai() {
+        return tenLoai;
+    }
+
+    public void setTenLoai(String tenLoai) {
+        this.tenLoai = tenLoai;
+    }
 
     public int getSoLuongDaMuon() {
         return soLuongDaMuon;

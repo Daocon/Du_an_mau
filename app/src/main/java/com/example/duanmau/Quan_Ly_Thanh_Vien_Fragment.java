@@ -2,6 +2,8 @@ package com.example.duanmau;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +27,12 @@ import java.util.ArrayList;
 
 public class Quan_Ly_Thanh_Vien_Fragment extends Fragment {
     ThanhVienDAO thanhVienDAO;
+    ThanhVienDTO thanhVienDTO;
     RecyclerView rycThanhVien;
+    ArrayList<ThanhVienDTO> list;
+    ArrayList<ThanhVienDTO> templist;
+    ThanhVienAdapter adapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +40,7 @@ public class Quan_Ly_Thanh_Vien_Fragment extends Fragment {
 
         rycThanhVien = view.findViewById(R.id.rycThanhVien);
         FloatingActionButton fltAddThanhVien = view.findViewById(R.id.fltAddThanhVien);
+        EditText edSearch = view.findViewById(R.id.edSearch);
 
         thanhVienDAO = new ThanhVienDAO(getContext());
         loadData();
@@ -40,6 +48,29 @@ public class Quan_Ly_Thanh_Vien_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showDialog();
+            }
+        });
+
+        edSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                list.clear();
+                for (ThanhVienDTO tv: templist){
+                    if (tv.getHoTen().toLowerCase().contains(s.toString().toLowerCase())){
+                        list.add(tv);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -84,11 +115,12 @@ public class Quan_Ly_Thanh_Vien_Fragment extends Fragment {
 
     }
     private void loadData(){
-        ArrayList<ThanhVienDTO> list = thanhVienDAO.getDataThanhVien();
+        list = thanhVienDAO.getDataThanhVien();
+        templist = thanhVienDAO.getDataThanhVien();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rycThanhVien.setLayoutManager(linearLayoutManager);
-        ThanhVienAdapter adapter = new ThanhVienAdapter(getContext(), list, thanhVienDAO);
+        adapter = new ThanhVienAdapter(getContext(), list, thanhVienDAO);
         rycThanhVien.setAdapter(adapter);
     }
 

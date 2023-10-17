@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,19 +42,45 @@ public class Quan_Ly_Phieu_Muon_Fragment extends Fragment {
     PhieuMuonDAO phieuMuonDAO;
     RecyclerView recyclerViewPM;
     ArrayList<PhieuMuonDTO> list;
+    ArrayList<PhieuMuonDTO> tempList;
+    PhieuMuonAdapter adapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quan__ly__phieu__muon,container,false);
         recyclerViewPM = view.findViewById(R.id.rycPhieuMuon);
         FloatingActionButton floatAdd = view.findViewById(R.id.fltAddPhieuMuon);
-
+        EditText edSearch = view.findViewById(R.id.edSearch);
         loadData();
 
         floatAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog();
+            }
+        });
+
+        edSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                list.clear();
+
+                for (PhieuMuonDTO pm: tempList){
+                    if (String.valueOf(pm.getMaPM()).contains(s.toString())){
+                        list.add(pm);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
@@ -126,9 +154,10 @@ public class Quan_Ly_Phieu_Muon_Fragment extends Fragment {
     private void loadData(){
         phieuMuonDAO = new PhieuMuonDAO(getContext());
         list = phieuMuonDAO.getdsPhieuMuon();
+        tempList = phieuMuonDAO.getdsPhieuMuon();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerViewPM.setLayoutManager(linearLayoutManager);
-        PhieuMuonAdapter adapter = new PhieuMuonAdapter(list, getContext());
+        adapter = new PhieuMuonAdapter(list, getContext());
         recyclerViewPM.setAdapter(adapter);
     }
     private void getDataThanhVien(Spinner spnThanhVien){

@@ -9,12 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Thêm sách"
+        android:text="Sửa sách"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txtMaS"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_addsach"/>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_ten"
         android:layout_width="match_parent"
@@ -24,7 +35,7 @@
         app:hintEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_addsach">
+        app:layout_constraintTop_toBottomOf="@+id/txtMaS">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_tensach"
@@ -79,14 +90,14 @@
         app:layout_constraintTop_toBottomOf="@+id/spLoaiSach_itemAddSach">
 
         <Button
-            android:id="@+id/btn_save_adds"
+            android:id="@+id/btn_save_updates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="100dp"
             android:text="Lưu" />
 
         <Button
-            android:id="@+id/btn_cancel_adds"
+            android:id="@+id/btn_cancel_updates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Huỷ" />

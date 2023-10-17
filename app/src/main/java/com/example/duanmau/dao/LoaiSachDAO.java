@@ -54,8 +54,8 @@ public class LoaiSachDAO {
         return 1;
     }
 
-    public List<LoaiSachDTO> getAllLoaiSachToString() {
-        List<LoaiSachDTO> ls = new ArrayList<>();
+    public ArrayList<LoaiSachDTO> getAllLoaiSachToString() {
+        ArrayList<LoaiSachDTO> ls = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM loaisach", null);
         if (c != null && c.getCount() > 0) {
             c.moveToFirst();
